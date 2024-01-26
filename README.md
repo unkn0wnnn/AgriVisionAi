@@ -1,4 +1,4 @@
-# Agri-Vison-Ai
+![image](https://github.com/unkn0wnnn/AgriVisionAi/assets/100390992/457d6e73-2856-46b1-bd3d-e87432c201aa)# Agri-Vison-Ai
 hackfest delhi hackathon
 
 ## Introduction
@@ -23,6 +23,23 @@ The Model uses 2 models working together to produce desired result Grounding Din
 
 1. Frame Extraction:
 The process commences with the extraction of individual frames from the aerial video captured by the farmer. Each frame encapsulates a snapshot of the field, serving as a canvas for the subsequent analysis.
+```python
+def process_video(video_path):
+    n = 1
+    # Open video capture
+    cap = cv2.VideoCapture(video_path)
+
+    # Check if the video opened successfully
+    if not cap.isOpened():
+        print("Error opening video file")
+        return
+
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+```
+
 
 2. Grounding Dino Model:
 The Grounding Dino model is then used to detect plant/crop with bounding boxes. This model excels at delineating the contours of objects by just giving it a prompt, creating precise bounding boxes that encapsulate the spatial footprint of each individual entity within the frame.

@@ -35,3 +35,6 @@ With the bounding boxes in hand, the Segment Anything Model (SAM) steps onto the
 
 6. Density Calculation:
 The masks are analyzed to quantify the density of crops within each frame. This quantitative data is then translated into a visual density map, offering farmers a comprehensive and intuitive representation of their field's health and vitality.
+
+### Data Visualization with Matplotlib
+At the heart of the visualization lies the density map—an eloquent depiction of crop distribution across each row. Matplotlib's prowess is harnessed to translate numerical density data into color gradients, creating a visual tapestry where shades represent the concentration of crops. Darker hues signify higher density, while lighter tones indicate areas that demand attention.

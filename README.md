@@ -82,4 +82,23 @@ print(f"frame:{n} ,density:{density}")
 ```
 
 ### Data Visualization with Matplotlib
-At the heart of the visualization lies the density map—an eloquent depiction of crop distribution across each row. Matplotlib's prowess is harnessed to translate numerical density data into color gradients, creating a visual tapestry where shades represent the concentration of crops. Darker hues signify higher density, while lighter tones indicate areas that demand attention.
+At the heart of the visualization lies the density map—an eloquent depiction of crop distribution across each row. Matplotlib's prowess is harnessed to translate numerical density data into color gradients, creating a visual tapestry where shades represent the concentration of crops. Darker hues signify higher density, while lighter tones indicate areas that demand attention. All the data from video is extracted and saved to python pkl files which are later used for visualisation.
+```python
+# Create a color map based on the magnitude of numbers
+color_map = plt.cm.get_cmap('viridis')
+
+# Plot the data using a scatter plot with color mapping
+for i, row in enumerate(all_data):
+    normalized_data = (np.array(row) - np.nanmin(row)) / (np.nanmax(row) - np.nanmin(row))
+    plt.scatter(range(len(row)), [i] * len(row), c=normalized_data, cmap=color_map, s=150)
+
+plt.yticks(range(len(all_data)), [f'Row {i+1}' for i in range(len(all_data))])
+
+# Add a color bar for reference
+cbar = plt.colorbar()
+cbar.set_label('Magnitude')
+
+# Show the plot
+plt.show()
+```
+![output_plot](https://github.com/unkn0wnnn/AgriVisionAi/assets/100390992/c611636b-b428-49f3-a138-4b9e3baf7d8b)

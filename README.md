@@ -1,5 +1,8 @@
-![image](https://github.com/unkn0wnnn/AgriVisionAi/assets/100390992/457d6e73-2856-46b1-bd3d-e87432c201aa)# Agri-Vison-Ai
+# Agri-Vison-Ai
 hackfest delhi hackathon
+https://github.com/unkn0wnnn/AgriVisionAi/assets/100390992/ab93d1f9-975d-486b-a183-deaa0258da47
+
+
 
 ## Introduction
 AgriVisionAi is Precision Farming Web Application designed to empower farmers with real-time insights and data-driven decision-making.

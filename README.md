@@ -1,8 +1,7 @@
 # Agri-Vison-Ai
 hackfest delhi hackathon
 
-![lisa] https://github.com/unkn0wnnn/AgriVisionAi/assets/100390992/ab93d1f9-975d-486b-a183-deaa0258da47
-
+https://github.com/unkn0wnnn/AgriVisionAi/assets/100390992/ab93d1f9-975d-486b-a183-deaa0258da47
 
 
 ## Introduction

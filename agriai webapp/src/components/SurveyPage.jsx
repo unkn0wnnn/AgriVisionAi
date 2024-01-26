@@ -1,13 +1,16 @@
 // src/components/SurveyPage.js
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SurveyPage = () => {
   const [numberOfRows, setNumberOfRows] = useState('');
   const [buttons, setButtons] = useState([]);
   const [error, setError] = useState('');
+  const [submissionInitiated, setSubmissionInitiated] = useState(false); // New state variable
   const videoRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const chunksRef = useRef([]);
+  const navigate = useNavigate(); 
 
   const handleInputChange = (event) => {
     setNumberOfRows(event.target.value);
@@ -77,6 +80,7 @@ const SurveyPage = () => {
       const buttonsArray = [];
       for (let i = 1; i <= parsedRows; i++) {
         buttonsArray.push(
+          <div>
           <div key={i} className="m-2">
             <button className="btn btn-success" onClick={handleStartRecording}>
               Start Recording {i}
@@ -85,19 +89,45 @@ const SurveyPage = () => {
               Stop Recording {i}
             </button>
           </div>
+          
+          </div>
         );
       }
+      buttonsArray.push(              
+      <div className="mt-3">
+      <p className="text-warning">
+        Since it is a computationally expensive task, video analysis will be done on an offline machine,
+        and the results will be uploaded later.
+      </p>
+      <button
+        type="button"
+        className="btn btn-info"
+        onClick={handleOfflineAnalysisSubmit}
+      >
+        Continue to Main Page
+      </button>
+    </div>);
       setButtons(buttonsArray);
       setError('');
     }
+  };
+  const handleOfflineAnalysisSubmit = () => {
+    // Simulate an asynchronous task (e.g., API call or offline processing)
+    setTimeout(() => {
+      // Redirect to the main page after processing
+      navigate('/');
+    }, 3000); // Adjust the timeout duration as needed
   };
 
   return (
     <div className="bg-dark text-light d-flex align-items-center justify-content-center vh-100">
       <div className="text-center">
-        <div className="leaf-container">
-          {/* ... your existing leaf images */}
-        </div>
+      <div className="leaf-container">
+        <img className="leaf" src="https://cdn3.iconfinder.com/data/icons/spring-23/32/leaf-spring-plant-ecology-green-512.png" alt="leaf" />
+        <img className="leaf" src="https://cdn3.iconfinder.com/data/icons/spring-23/32/leaf-spring-plant-ecology-green-512.png" alt="leaf" />
+        <img className="leaf" src="https://cdn3.iconfinder.com/data/icons/spring-23/32/leaf-spring-plant-ecology-green-512.png" alt="leaf" />
+        <img className="leaf" src="https://cdn3.iconfinder.com/data/icons/spring-23/32/leaf-spring-plant-ecology-green-512.png" alt="leaf" />
+      </div>
         <video ref={videoRef} width="320" height="240" autoPlay muted></video>
         {buttons.length === 0 ? (
           <form onSubmit={handleSubmit}>
@@ -119,7 +149,25 @@ const SurveyPage = () => {
             </button>
           </form>
         ) : (
-          <div>{buttons}</div>
+          <div>
+            {buttons}
+            {/* Render the message and initiate offline analysis when submission is initiated */}
+            {submissionInitiated && (
+              <div className="mt-3">
+                <p className="text-warning">
+                  Since it is a computationally expensive task, video analysis will be done on an offline machine,
+                  and the results will be uploaded later.
+                </p>
+                <button
+                  type="button"
+                  className="btn btn-info"
+                  onClick={handleOfflineAnalysisSubmit}
+                >
+                  Continue to Main Page
+                </button>
+              </div>
+            )}
+          </div>
         )}
       </div>
     </div>
